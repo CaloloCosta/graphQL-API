@@ -1,0 +1,27 @@
+{
+  "name": "graphql-api",
+  "version": "1.0.0",
+  "description": "a graphQL API for a notice board app",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.8",
+    "graphql-tools": "^4.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaloloCosta/graphQL-API.git"
+  },
+  "author": "Carlos da Costa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CaloloCosta/graphQL-API/issues"
+  },
+  "homepage": "https://github.com/CaloloCosta/graphQL-API#readme"
+}
