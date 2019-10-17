@@ -1,4 +1,5 @@
-const schema = `
+
+const typeDefs = `
 # declare custom scalar for date
 scalar GQDate
 #notice type
@@ -27,4 +28,4 @@ type Mutation {
     deleteNotice(id: ID!): Notice
 }
 `
-module.exports.Schema = schema
+module.exports.TypeDefs = typeDefs

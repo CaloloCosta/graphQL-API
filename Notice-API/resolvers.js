@@ -1,6 +1,4 @@
-import { GraphQLScalarType } from 'graphql';
-import { brotliCompress } from 'zlib';
-
+const { GraphQLScalarType } = require("graphql");
 // date format
 function convertDate(inputFormat) {
     function pad(s) {
@@ -25,13 +23,6 @@ const GQDate = new GraphQLScalarType({
     }
 });
 
-// data store
-// type Notice {
-//     id: ID!
-//     topic: String
-//     description: String
-//     submissionDate: GQDate
-// }
 const notices = [
     {
         id: 1,
