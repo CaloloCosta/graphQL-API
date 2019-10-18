@@ -9,6 +9,9 @@ type Notice {
     topic: String
     description: String
     submissionDate: GQDate
+    day: Int
+    month: Int
+    week: Int
 }
 
 # implemantations of READ Operations
@@ -22,7 +25,7 @@ type Query {
 # implementations of CREATE, UPDATE, DELETE
 type Mutation {
     # Create a notice
-    createNotice (topic: String, description: String, submissionDate: GQDate): Notice
+    createNotice (topic: String, description: String, submissionDate: GQDate, day: Int, month: Int, week: Int): Notice
     # Update a notice
     updateNotice (id: ID!, topic: String, description: String, submissionDate: GQDate): Notice
     # Delete a Notice

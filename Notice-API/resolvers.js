@@ -23,40 +23,23 @@ const GQDate = new GraphQLScalarType({
     }
 });
 
-const notices = [
-    {
-        id: 1,
-        topic: "DSP test",
-        description: "Second DSP test will be written in Octuber 15",
-        submissionDate: new Date("2019-09-10")
-    },
-    {
-        id: 2,
-        topic: "DSP Assignment 2",
-        description: "Second DSP assignment is due in Octuber 21",
-        submissionDate: new Date("2019-09-10")
-    }
-]
 
 const resolvers = {
     Query: {
-        Notices: (root, args, {dataSources}) => dataSources.noticeAPI.getAllNotices(),
-        Notice: (_, { id }) => notices.find(notice => notice.id == id)
+        Notices: (root, args, {dataSources}) => dataSources.noticeAPI.getAllNotices(Math.round((Math.random(1)*4)+1)),
+        Notice: (root, args, {dataSources}) => dataSources.noticeAPI.getNotice(args.id,Math.round((Math.random(1)*4)+1))
     },
     Mutation: {
-        createNotice: (root, args) => {
-            const nextId = notices.reduce((id, notice) => {
-                return Math.max(id, notice.id)
-            }, -1) + 1;
-            
-            let newNotice = {
-                id: nextId,
-                topic: args.topic,
-                description: args.description,
-                submissionDate: args.submissionDate
+        createNotice: (root, args, {dataSources}) => {
+            let notice = {
+                "topic": args.topic, 
+                "description": args.description, 
+                "submissionDate": args.submissionDate, 
+                "day": args.day, 
+                "month": args.month, 
+                "week": args.week
             }
-            notices.push(newNotice);
-            return notices[nextId];
+            return dataSources.noticeAPI.addNotice(notice,Math.round((Math.random(1)*4)+1))
         },
         deleteNotice: (root, args) => {
             const index = notices.findIndex(
