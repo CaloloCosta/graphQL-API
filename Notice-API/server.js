@@ -17,31 +17,48 @@
 // //     console.log(`SErver ready at ${url}`)
 // // })
 
-const express = require('express')
-const cors = require('cors')
-const graphqlHTTP = require('express-graphql')
-const {makeExecutableSchema} = require('graphql-tools')
+// const express = require('express')
+// const cors = require('cors')
+// const graphqlHTTP = require('express-graphql')
+// const {makeExecutableSchema} = require('graphql-tools')
 
+// const typeDefs = require('./schema').TypeDefs
+// const resolvers = require('./resolvers').Resolvers
+// const schema = makeExecutableSchema({
+//     typeDefs,
+//     resolvers,
+//     logger: {
+//         log: e => console.log(e)
+//     }
+// })
+
+// const app = express()
+// app.use(cors())
+
+// app.use(
+//     "/graphql",
+//     graphqlHTTP(request => ({
+//       schema: schema,
+//       graphiql: true
+//     }))
+//   );
+// app.listen(4000, () =>{
+//     console.log('SErver ready at localhost:4000')
+// })  
+
+const {ApolloServer} = require('apollo-server')
+const {NoticeAPI} = require('./datasource')
 const typeDefs = require('./schema').TypeDefs
 const resolvers = require('./resolvers').Resolvers
-const schema = makeExecutableSchema({
-    typeDefs,
-    resolvers,
-    logger: {
-        log: e => console.log(e)
-    }
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources: () => ({
+    noticeAPI: new NoticeAPI()
+  })
 })
 
-const app = express()
-app.use(cors())
-
-app.use(
-    "/graphql",
-    graphqlHTTP(request => ({
-      schema: schema,
-      graphiql: true
-    }))
-  );
-app.listen(4000, () =>{
-    console.log('SErver ready at localhost:4000')
-})  
+server.listen().then(({url}) => {
+  console.log(`Server ready at ${url}`)
+})

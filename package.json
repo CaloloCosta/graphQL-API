@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/CaloloCosta/graphQL-API#readme",
   "dependencies": {
+    "apollo-datasource-rest": "^0.6.5",
     "apollo-server": "^2.9.6",
     "apollo-server-express": "^2.9.6",
     "cors": "^2.8.5",

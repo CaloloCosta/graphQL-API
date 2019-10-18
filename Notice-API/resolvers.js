@@ -40,7 +40,7 @@ const notices = [
 
 const resolvers = {
     Query: {
-        Notices: () => notices,
+        Notices: (root, args, {dataSources}) => dataSources.noticeAPI.getAllNotices(),
         Notice: (_, { id }) => notices.find(notice => notice.id == id)
     },
     Mutation: {

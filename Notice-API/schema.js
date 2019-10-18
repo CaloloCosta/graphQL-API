@@ -1,5 +1,6 @@
+const {gql} = require('apollo-server')
 
-const typeDefs = `
+const typeDefs = gql`
 # declare custom scalar for date
 scalar GQDate
 #notice type
