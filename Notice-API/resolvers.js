@@ -41,24 +41,22 @@ const resolvers = {
             }
             return dataSources.noticeAPI.addNotice(notice,Math.round((Math.random(1)*4)+1))
         },
-        deleteNotice: (root, args) => {
-            const index = notices.findIndex(
-                notice => notice.id == args.id
-            )
-            if(index){
-                notices.splice(index, 1)
-            }
+        deleteNotice: (root, args, {dataSources}) => {
+                                         
+            return dataSources.noticeAPI.deleteNotice(args.id,Math.round((Math.random(1)*4)+1))
         },
-        updateNotice: (root, args) => {
-            const index = notices.findIndex(
-                notice => notice.id == args.id
-            );
-            if(index){
-                notices[index].topic = args.topic;
-                notices[index].description = args.description;
-                notices[index].submissionDate = args.submissionDate;
-                return notices[index];
+        
+        updateNotice: (root, args, {dataSources}) => {
+            let notice = {
+                "topic": args.topic, 
+                "description": args.description, 
+                "submissionDate": args.submissionDate, 
+                "day": args.day, 
+                "month": args.month, 
+                "week": args.week,
+                "id": args.id
             }
+            return dataSources.noticeAPI.updateNotice(notice,Math.round((Math.random(1)*4)+1))
         }
     },
     GQDate

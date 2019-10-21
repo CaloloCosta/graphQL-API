@@ -20,6 +20,19 @@ class NoticeAPI extends RESTDataSource {
         console.log(port)
         return this.post('addNotice',notice)
     }
+    async deleteNotice(id, port){
+        this.baseURL = `http://localhost:909${port}/`
+        console.log(port)
+        return this.get(`deleteNotice/${id}`)
+
+    }
+
+    async updateNotice(notice, port){
+        this.baseURL = `http://localhost:909${port}/`
+        console.log(port)
+        return this.post('updateNotice',notice)
+
+    }
 }
 
 module.exports.NoticeAPI = NoticeAPI 

@@ -27,7 +27,7 @@ type Mutation {
     # Create a notice
     createNotice (topic: String, description: String, submissionDate: GQDate, day: Int, month: Int, week: Int): Notice
     # Update a notice
-    updateNotice (id: ID!, topic: String, description: String, submissionDate: GQDate): Notice
+    updateNotice (id: ID!, topic: String, description: String, submissionDate: GQDate, day: Int, month: Int, week: Int): Notice
     # Delete a Notice
     deleteNotice(id: ID!): Notice
 }
