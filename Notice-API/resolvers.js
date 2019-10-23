@@ -1,10 +1,10 @@
 const { GraphQLScalarType } = require("graphql");
 // date format
-function convertDate(inputFormat) {
+function convertDate() {
     function pad(s) {
       return s < 10 ? "0" + s : s;
     }
-    let d = new Date(inputFormat);
+    let d = new Date();
     return [pad(d.getDate()), pad(d.getMonth()), d.getFullYear()].join("/");
 }
 
@@ -37,6 +37,7 @@ const resolvers = {
                 "submissionDate": args.submissionDate, 
                 "day": args.day, 
                 "month": args.month, 
+                "submissionDate": convertDate(),
                 "week": args.week
             }
             return dataSources.noticeAPI.addNotice(notice,Math.round((Math.random(1)*4)+1))
